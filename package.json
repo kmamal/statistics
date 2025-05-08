@@ -1,0 +1,22 @@
+{
+  "version": "0.0.0",
+  "name": "@kmamal/statistics",
+  "description": "statistics",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:kmamal/statistics.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "test": "npx -p @kmamal/testing testing",
+    "update-exports": "node ./scripts/update-exports.mjs"
+  },
+  "exports": "./src/index.js",
+  "main": "./src/index.js",
+  "devDependencies": {
+    "@kmamal/testing": "^0.0.31"
+  },
+  "dependencies": {
+    "@kmamal/util": "^0.2.28"
+  }
+}
