@@ -1,5 +1,5 @@
 {
-  "version": "0.0.0",
+  "version": "0.0.1",
   "name": "@kmamal/statistics",
   "description": "statistics",
   "repository": {
@@ -11,8 +11,17 @@
     "test": "npx -p @kmamal/testing testing",
     "update-exports": "node ./scripts/update-exports.mjs"
   },
-  "exports": "./src/index.js",
-  "main": "./src/index.js",
+  "exports": {
+    "./german-tank": "./src/german-tank.js",
+    "./density-estimation/density-estimation": "./src/density-estimation/density-estimation.js",
+    "./similarity": "./src/similarity.js",
+    "./math": "./src/math.js",
+    "./summary": "./src/summary.js",
+    "./entropy": "./src/entropy.js",
+    "./quantization": "./src/quantization.js",
+    "./finance": "./src/finance.js",
+    "./self-similarity": "./src/self-similarity.js"
+  },
   "devDependencies": {
     "@kmamal/testing": "^0.0.31"
   },

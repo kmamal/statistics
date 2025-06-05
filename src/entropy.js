@@ -1,15 +1,16 @@
 const Counts = require('@kmamal/counts/map')
-const { countBy } = require('@kmamal/util/map/count')
+const { count, countBy } = require('@kmamal/util/map/count')
 
+const countTo = count.to
 const countByTo = countBy.to
 
 
-const _entropy = (counts, _total) => {
+const entropyFromCounts = (counts, _total) => {
 	let h = 0
 	const total = _total ?? Counts.total(counts)
-	for (const count of counts.values()) {
-		if (count === 0) { continue }
-		const p = count / total
+	for (const num of counts.values()) {
+		if (num === 0) { continue }
+		const p = num / total
 		h -= p * Math.log2(p)
 	}
 	return h
@@ -18,13 +19,19 @@ const _entropy = (counts, _total) => {
 
 const _tmp = new Map()
 
-const entropy = (samples, fnGetLabel) => {
-	countByTo(_tmp, samples, fnGetLabel)
-	return _entropy(_tmp, samples.length)
+const entropyBy = (arr, fnMap) => {
+	countByTo(_tmp, arr, fnMap)
+	return entropyFromCounts(_tmp, arr.length)
+}
+
+const entropy = (arr) => {
+	countTo(_tmp, arr)
+	return entropyFromCounts(_tmp, arr.length)
 }
 
 
 module.exports = {
-	_entropy,
+	entropyFromCounts,
+	entropyBy,
 	entropy,
 }

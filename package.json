@@ -22,7 +22,6 @@
     "./finance": "./src/finance.js",
     "./self-similarity": "./src/self-similarity.js"
   },
-  "main": "./src/index.js",
   "devDependencies": {
     "@kmamal/testing": "^0.0.31"
   },
