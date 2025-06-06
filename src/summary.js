@@ -32,24 +32,41 @@ const interQuartileRange = (values) => {
 }
 
 
-const _variance = (data) => {
+const _sumOfSquaredDiffs = (data, dataMean) => {
 	const { length } = data
-	const m = mean(data)
-	let ssum = 0
+	let sumOfSquaredDiffs = 0
 	for (let i = 0; i < length; i++) {
-		const d = data[i] - m
-		ssum += d * d
+		const diff = data[i] - dataMean
+		sumOfSquaredDiffs += diff * diff
 	}
-	return ssum
+	return sumOfSquaredDiffs
 }
 
-const variance = (data) => _variance(data) / data.length
-const sampleVariance = (data) => _variance(data) / (data.length - 1)
+const varianceHavingMean = (data, _mean) => _sumOfSquaredDiffs(data, _mean) / data.length
+const sampleVarianceHavingMean = (data, _mean) => _sumOfSquaredDiffs(data, _mean) / (data.length - 1)
 
+const variance = (data) => _sumOfSquaredDiffs(data, mean(data)) / data.length
+const sampleVariance = (data) => _sumOfSquaredDiffs(data, mean(data)) / (data.length - 1)
+
+
+const standardDeviationFromVariance = (_variance) => Math.sqrt(_variance)
+const sampleStandardDeviationFromSampleVariance = (_sampleVariance) => Math.sqrt(_sampleVariance)
+
+const standardDeviationHavingMean = (data, _mean) => Math.sqrt(varianceHavingMean(data, _mean))
+const sampleStandardDeviationHavingMean = (data, _mean) => Math.sqrt(sampleVarianceHavingMean(data, _mean))
 
 const standardDeviation = (data) => Math.sqrt(variance(data))
 const sampleStandardDeviation = (data) => Math.sqrt(sampleVariance(data))
 
+
+const coefficientOfVariationFromStandardDeviationAndMean = (_standardDeviation, _mean) => _standardDeviation / _mean
+const sampleCoefficientOfVariationFromSampleStandardDeviationAndMean = (_sampleStandardDeviation, _mean) => _sampleStandardDeviation / _mean
+
+const coefficientOfVariationHavingStandardDeviation = (data, _standardDeviation) => _standardDeviation / mean(data)
+const sampleCoefficientOfVariationHavingSampleStandardDeviation = (data, _sampleStandardDeviation) => _sampleStandardDeviation / mean(data)
+
+const coefficientOfVariationHavingMean = (data, _mean) => standardDeviationHavingMean(data, _mean) / _mean
+const sampleCoefficientOfVariationHavingMean = (data, _mean) => sampleStandardDeviationHavingMean(data, _mean) / _mean
 
 const coefficientOfVariation = (data) => standardDeviation(data) / mean(data)
 const sampleCoefficientOfVariation = (data) => sampleStandardDeviation(data) / mean(data)
@@ -85,11 +102,23 @@ module.exports = {
 	geometricMean,
 	harmonicMean,
 	interQuartileRange,
+	varianceHavingMean,
 	variance,
+	sampleVarianceHavingMean,
 	sampleVariance,
+	standardDeviationFromVariance,
+	standardDeviationHavingMean,
 	standardDeviation,
+	sampleStandardDeviationFromSampleVariance,
+	sampleStandardDeviationHavingMean,
 	sampleStandardDeviation,
+	coefficientOfVariationFromStandardDeviationAndMean,
+	coefficientOfVariationHavingStandardDeviation,
+	coefficientOfVariationHavingMean,
 	coefficientOfVariation,
+	sampleCoefficientOfVariationFromSampleStandardDeviationAndMean,
+	sampleCoefficientOfVariationHavingSampleStandardDeviation,
+	sampleCoefficientOfVariationHavingMean,
 	sampleCoefficientOfVariation,
 	skewness,
 	kurtosis,
