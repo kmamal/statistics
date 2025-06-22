@@ -1,7 +1,12 @@
 const { select } = require('@kmamal/util/array/select')
 
 
-const median = (data) => select(data, Math.floor(data.length / 2))
+const median = (data) => {
+	const N = data.length
+	if (N % 2 === 1) { return select(data, (data.length - 1) / 2) }
+	const mid = data.length / 2
+	return select(data, mid) / 2 + select(data, mid - 1) / 2
+}
 
 
 const mean = (data) => {

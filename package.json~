@@ -1,5 +1,5 @@
 {
-  "version": "0.0.2",
+  "version": "0.0.3",
   "name": "@kmamal/statistics",
   "description": "statistics",
   "repository": {
@@ -17,8 +17,10 @@
     "./similarity": "./src/similarity.js",
     "./math": "./src/math.js",
     "./summary": "./src/summary.js",
+    "./running-mean": "./src/running-mean.js",
     "./entropy": "./src/entropy.js",
     "./quantization": "./src/quantization.js",
+    "./running-variance": "./src/running-variance.js",
     "./finance": "./src/finance.js",
     "./self-similarity": "./src/self-similarity.js"
   },
