@@ -20,8 +20,13 @@ const roundTo = (x, unit) => {
 	return signX * Math.round(absX / absUnit) * absUnit
 }
 
+const roundUp = (x) => Math.sign(x) * Math.ceil(Math.abs(x))
+const roundDown = (x) => Math.sign(x) * Math.floor(Math.abs(x))
+
 module.exports = {
 	floorTo,
 	ceilTo,
 	roundTo,
+	roundUp,
+	roundDown,
 }

@@ -53,11 +53,12 @@ const from = ({ sign: s = 0, exponent: e = 0, mantissa: m = 0 }) => {
 
 const nextToward = (value, target) => {
 	if (Number.isNaN(value) || Number.isNaN(target)) { return NaN }
-	if (value === target) { return value }
+	const diff = target - value
+	if (diff === 0) { return value }
 
 	const view = _toView(value)
 	const unsigned = view.getUint32(0, false)
-	const direction = target > value ? 1 : -1
+	const direction = Math.sign(diff)
 	const increment = value > 0 ? direction : -direction
 	view.setUint32(0, unsigned + increment, false)
 	return view.getFloat32(0, false)
