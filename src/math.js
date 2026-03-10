@@ -38,7 +38,7 @@ const top = (data) => {
 const bottom = (data) => {
 	const { length } = data
 	const res = new Array(length)
-	let min = -Infinity
+	let min = Infinity
 	for (let i = 0; i < length; i++) {
 		min = res[i] = Math.min(min, data[i])
 	}

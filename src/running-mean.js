@@ -8,7 +8,7 @@ class RunningMean {
 
 	count () { return this._count }
 	sum () { return this._sum }
-	mean () { return (this._mean ??= this._sum / this._count) }
+	mean () { return (this._mean ??= this._count === 0 ? 0 : this._sum / this._count) }
 
 	add (x) {
 		this._count++

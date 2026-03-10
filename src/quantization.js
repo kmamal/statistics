@@ -68,7 +68,7 @@ const quantizeEquiprobable = (values, k) => {
 	borders[0] = min
 	borders[k] = max
 
-	const step = N / (k + 1)
+	const step = N / k
 	for (let i = 1; i < k; i++) {
 		const pos = i * step
 		const ai = Math.floor(pos)

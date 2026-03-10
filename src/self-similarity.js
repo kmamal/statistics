@@ -14,8 +14,7 @@ const autoCorrelation = (data, t) => _autoCorrelation(data, t) / data.length
 const sampleAutoCorrelation = (data, t) => _autoCorrelation(data, t) / (data.length - 1)
 
 
-const _autoCovariance = (data, t) => {
-	const m = mean(data)
+const _autoCovariance = (data, m, t) => {
 	let msum = 0
 	for (let i = 0; i < data.length - t; i++) {
 		msum += (data[i] - m) * (data[i + t] - m)
@@ -23,18 +22,29 @@ const _autoCovariance = (data, t) => {
 	return msum
 }
 
-const autoCovariance = (data, t) => _autoCovariance(data, t) / data.length
-const sampleAutoCovariance = (data, t) => _autoCovariance(data, t) / (data.length - 1)
+const autoCovarianceHavingMean = (data, t, _mean) => _autoCovariance(data, _mean, t) / data.length
+const sampleAutoCovarianceHavingMean = (data, t, _mean) => _autoCovariance(data, _mean, t) / (data.length - 1)
 
+const autoCovariance = (data, t) => _autoCovariance(data, mean(data), t) / data.length
+const sampleAutoCovariance = (data, t) => _autoCovariance(data, mean(data), t) / (data.length - 1)
+
+
+const autoCorrelationCoefficientHavingMean = (data, t, _mean) => autoCovarianceHavingMean(data, t, _mean) / variance(data)
+const sampleAutoCorrelationCoefficientHavingMean = (data, t, _mean) => sampleAutoCovarianceHavingMean(data, t, _mean) / sampleVariance(data)
+
+const autoCorrelationCoefficientHavingVariance = (data, t, _variance) => autoCovariance(data, t) / _variance
+const sampleAutoCorrelationCoefficientHavingVariance = (data, t, _variance) => sampleAutoCovariance(data, t) / _variance
+
+const autoCorrelationCoefficientHavingMeanAndVariance = (data, t, _mean, _variance) => autoCovarianceHavingMean(data, t, _mean) / _variance
+const sampleAutoCorrelationCoefficientHavingMeanAndVariance = (data, t, _mean, _variance) => sampleAutoCovarianceHavingMean(data, t, _mean) / _variance
 
 const autoCorrelationCoefficient = (data, t) => autoCovariance(data, t) / variance(data)
 const sampleAutoCorrelationCoefficient = (data, t) => sampleAutoCovariance(data, t) / sampleVariance(data)
 
 
-const _autoCorrelationPlot = (data, tMax, ss) => {
-	const { length } = data
+const _autoCorrelationPlot = (data, tMax, ss, _length) => {
 	const m = mean(data)
-	const factor = ss * length
+	const factor = ss * _length
 
 	const result = new Array(tMax + 1)
 	result[0] = 1
@@ -48,8 +58,8 @@ const _autoCorrelationPlot = (data, tMax, ss) => {
 	return result
 }
 
-const autoCorrelationPlot = (data, tMax) => _autoCorrelationPlot(data, tMax, variance(data))
-const sampleAutoCorrelationPlot = (data, tMax) => _autoCorrelationPlot(data, tMax, sampleVariance(data))
+const autoCorrelationPlot = (data, tMax) => _autoCorrelationPlot(data, tMax, variance(data), data.length)
+const sampleAutoCorrelationPlot = (data, tMax) => _autoCorrelationPlot(data, tMax, sampleVariance(data), data.length)
 
 
 const _partialAutoCorrelationFunction = (data, tMax, autoCorrelations) => {
@@ -91,8 +101,16 @@ const samplePartialAutoCorrelationFunction = (data, tMax) => _partialAutoCorrela
 module.exports = {
 	autoCorrelation,
 	sampleAutoCorrelation,
+	autoCovarianceHavingMean,
 	autoCovariance,
+	sampleAutoCovarianceHavingMean,
 	sampleAutoCovariance,
+	autoCorrelationCoefficientHavingMean,
+	autoCorrelationCoefficientHavingVariance,
+	autoCorrelationCoefficientHavingMeanAndVariance,
+	sampleAutoCorrelationCoefficientHavingMean,
+	sampleAutoCorrelationCoefficientHavingVariance,
+	sampleAutoCorrelationCoefficientHavingMeanAndVariance,
 	autoCorrelationCoefficient,
 	sampleAutoCorrelationCoefficient,
 	autoCorrelationPlot,

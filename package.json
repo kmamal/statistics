@@ -25,11 +25,12 @@
     "./self-similarity": "./src/self-similarity.js"
   },
   "devDependencies": {
-    "@kmamal/testing": "^0.0.31"
+    "@kmamal/testing": "0.0.33"
   },
   "dependencies": {
-    "@kmamal/counts": "^0.0.8",
-    "@kmamal/triangular": "^0.0.1",
-    "@kmamal/util": "^0.2.28"
+    "@kmamal/counts": "0.0.8",
+    "@kmamal/spectral-density-estimation": "0.0.3",
+    "@kmamal/triangular": "0.0.1",
+    "@kmamal/util": "0.2.29"
   }
 }
