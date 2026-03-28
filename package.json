@@ -46,6 +46,6 @@
     "@kmamal/counts": "0.0.8",
     "@kmamal/spectral-density-estimation": "0.0.3",
     "@kmamal/triangular": "0.0.1",
-    "@kmamal/util": "0.2.29"
+    "@kmamal/util": "0.2.30"
   }
 }

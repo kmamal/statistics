@@ -2,4 +2,5 @@ scripts
 **/*.test.js
 **/*.benchmark.js
 **/testing/
+**/benchmarking/
 **/_*
