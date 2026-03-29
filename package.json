@@ -32,6 +32,7 @@
     "./similarity": "./src/similarity.js",
     "./finance": "./src/finance.js",
     "./running-mean": "./src/running-mean.js",
+    "./running-least-squares": "./src/running-least-squares.js",
     "./white-noise-tests/fishers-kappa": "./src/white-noise-tests/fishers-kappa.js",
     "./white-noise-tests/kolmogorov-smirnov": "./src/white-noise-tests/kolmogorov-smirnov.js",
     "./white-noise-tests/ljung-box": "./src/white-noise-tests/ljung-box.js",
